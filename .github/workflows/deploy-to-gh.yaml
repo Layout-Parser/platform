@@ -1,0 +1,45 @@
+name: Deploy to Github Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Github Pages
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13.x
+
+    - name: Install NPM packages
+      run: npm install && npm ci
+    
+    - name: Build project
+      run: npm run build
+    
+    - run : git config user.name github-actions
+      shell: bash
+
+    - run : git config user.email github-actions@github.com
+      shell: bash
+
+    - run : git --work-tree build add --all
+      shell: bash
+    
+    - run : git commit -m $"Automatic Deploy $(git rev-parse --short HEAD)"
+      shell: bash
+
+    - run : git push origin HEAD:gh-pages --force
+      shell: bash
