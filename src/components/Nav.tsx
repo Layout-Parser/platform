@@ -1,6 +1,8 @@
 import "./../styles/App.scss";
 import React from 'react';
 import { Hero, Navbar, Container } from "react-bulma-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import logo from "./../assets/lp-badge-white.svg";
 
 export interface NavRoute {
@@ -35,6 +37,11 @@ export const Nav = ({ routes } : NavProps) => {
                                         </Navbar.Item>
                                     ))
                                 }
+                                <Navbar.Item renderAs="div">
+                                    <a className="bg-transparent button is-danger" target="_blank" href="https://github.com/Layout-Parser/layout-parser">
+                                        <FontAwesomeIcon icon={faGithub} size="lg"/>
+                                    </a>
+                                </Navbar.Item>
                             </Navbar.Container>
                         </Navbar.Menu>
                     </Container>
