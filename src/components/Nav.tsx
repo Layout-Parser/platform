@@ -38,7 +38,7 @@ export const Nav = ({ routes } : NavProps) => {
                                     ))
                                 }
                                 <Navbar.Item renderAs="div">
-                                    <a className="bg-transparent button is-danger" target="_blank" href="https://github.com/Layout-Parser/layout-parser">
+                                    <a className="bg-transparent button is-danger" target="_blank" href="https://github.com/Layout-Parser/layout-parser" rel="noreferrer">
                                         <FontAwesomeIcon icon={faGithub} size="lg"/>
                                     </a>
                                 </Navbar.Item>
