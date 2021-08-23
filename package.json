@@ -4,9 +4,12 @@
   "homepage": "https://layout-parser.github.io/platform/",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "axios": "^0.21.1",
     "bulma": "^0.9.3",
     "dayjs": "^1.8.30",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-bulma-components": "4.0.7",
     "react-dom": "^17.0.2",
