@@ -3,7 +3,18 @@ import React from 'react';
 import { Hero, Navbar, Container } from "react-bulma-components";
 import logo from "./../assets/lp-badge-white.svg";
 
-export const Nav = () => {
+export interface NavRoute {
+    /* The url path, i.e. in the url `http://localhost/about`, `/about` is the path. */
+    path: string;
+    /* The name of the route that's displayed in the navigation. */
+    label: string;
+};
+
+interface NavProps {
+    routes: NavRoute[]
+}
+
+export const Nav = ({ routes } : NavProps) => {
     return (
         <Hero className="slogan-hero is-bold" color="danger">
             <Hero.Header>
@@ -17,9 +28,13 @@ export const Nav = () => {
                         </Navbar.Brand>
                         <Navbar.Menu>
                             <Navbar.Container align="right">
-                                <Navbar.Item href="#">
-                                    At the end
-                                </Navbar.Item>
+                                {
+                                    routes.map((route) => (
+                                        <Navbar.Item href={route.path}>
+                                            {route.label}
+                                        </Navbar.Item>
+                                    ))
+                                }
                             </Navbar.Container>
                         </Navbar.Menu>
                     </Container>
