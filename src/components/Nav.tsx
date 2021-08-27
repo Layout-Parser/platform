@@ -1,8 +1,8 @@
 import "./../styles/App.scss";
 import React from 'react';
 import { Hero, Navbar, Container } from "react-bulma-components";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import logo from "./../assets/lp-badge-white.svg";
 
 export interface NavRoute {
@@ -14,7 +14,7 @@ export interface NavRoute {
 
 interface NavProps {
     routes: NavRoute[]
-}
+};
 
 export const Nav = ({ routes } : NavProps) => {
     return (
