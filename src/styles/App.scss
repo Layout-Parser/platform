@@ -30,6 +30,7 @@ $navbar-item-img-max-height: 4rem;
 // Import Bulma
 // @import "bulma/bulma";
 @import "~bulma/bulma.sass";
+@import "~bulma-divider/src/sass/index.sass";
 // public
 
 a.is-active {
@@ -201,4 +202,15 @@ h6:hover .header-link {
     font-size: 1.15rem;
     font-family: $family-header;
     color: white !important;
+}
+
+.model-list-date, .model-list-divider, .model-list-minutes, .model-list-cat {
+    font-family: $family-sans-serif;
+    color: $grey-light;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.model-config {
+    background-color: $white;
 }
