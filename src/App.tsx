@@ -1,45 +1,46 @@
 import "./styles/App.scss";
 import React from 'react';
-import { Hero, Container, Content, Heading, Columns, Block, Tag } from "react-bulma-components";
+import {union} from 'lodash';
+import { Hero, Container, Content, Heading, Columns } from "react-bulma-components";
 import { Nav, NavRoute, SearchTagRowProps, SearchPanel, ModelCard, ModelCardProps } from './components';
 
 const NAVROUTES: NavRoute[] = [
   {
-      path: 'https://layout-parser.github.io/tutorials.html',
-      label: 'Tutorials',
+    path: 'https://layout-parser.github.io/tutorials.html',
+    label: 'Tutorials',
   },
   {
-      path: 'https://layout-parser.readthedocs.io/en/latest/',
-      label: 'Docs',
+    path: 'https://layout-parser.readthedocs.io/en/latest/',
+    label: 'Docs',
   },
   {
     path: '/',
     label: 'Open Platform',
   },
   {
-      path: 'https://join.slack.com/t/layout-parser/shared_invite/zt-ohjd14k1-OrJ2HltwVRGrxhLeHMfW_w',
-      label: 'Discussion',
+    path: 'https://join.slack.com/t/layout-parser/shared_invite/zt-ohjd14k1-OrJ2HltwVRGrxhLeHMfW_w',
+    label: 'Discussion',
   },
 ];
 
 const SearchTagGroupsData: SearchTagRowProps[] = [
   {
-      title: "Document Type",
-      tags: [
-          "Scientific", "Historical", "Forms" 
-      ]
+    title: "Document Type",
+    tags: [
+      "Scientific", "Historical", "Forms"
+    ]
   },
   {
-      title: "Model Sizes",
-      tags: [
-          "Small", "Large"
-      ]
+    title: "Model Sizes",
+    tags: [
+      "Small", "Large"
+    ]
   },
   {
-      title: "Architecture",
-      tags: [
-          "Detectron2", "Paddle", "EfficientDet"
-      ]
+    title: "Architecture",
+    tags: [
+      "Detectron2", "Paddle", "EfficientDet"
+    ]
   }
 ];
 
@@ -87,10 +88,39 @@ const AllPipelineData: ModelCardProps[] = [
   {
     name: "Table Detection Pipeline",
     author: "shannons",
-    docType: "Business", 
+    docType: "Business",
     updateTime: "Aug 16, 2021",
   },
-]
+];
+
+function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
+  return [
+    {
+      title: "Document Type",
+      tags: modelData.map(singleModelData => (singleModelData.docType))
+    },
+    {
+      title: "Backends",
+      tags: union(
+        ...modelData.map(singleModelData => (
+          singleModelData.modelSpecs?.map(
+            spec => spec.tags.backend
+          )
+        ))
+      )
+    },
+    {
+      title: "Model Sizes",
+      tags: union(
+        ...modelData.map(singleModelData => (
+          singleModelData.modelSpecs?.map(
+            spec => spec.tags.size
+          )
+        ))
+      )
+    },
+  ]
+};
 
 function App() {
   return (
@@ -103,32 +133,32 @@ function App() {
               <Heading size={2}>
                 Layout Parser Sharing Platform
               </Heading>
-            </Content> 
+            </Content>
             <Columns>
               <Columns.Column size={4}>
-                <SearchPanel searchTagRows={SearchTagGroupsData} totalModelCount={100}/>
+                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(AllModelData.concat(AllPipelineData))} totalModelCount={100} />
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
                   Models
                 </Heading>
-                
+
                 {
                   AllModelData.map(
                     (singleModelData) => (
-                      <ModelCard {...singleModelData}/> 
+                      <ModelCard {...singleModelData} />
                     )
                   )
                 }
 
-                <Heading subtitle size={3} mb={1} mt={5}textTransform="uppercase">
+                <Heading subtitle size={3} mb={1} mt={5} textTransform="uppercase">
                   Pipelines
                 </Heading>
 
                 {
                   AllPipelineData.map(
                     (singlePipelineData) => (
-                      <ModelCard {...singlePipelineData}/> 
+                      <ModelCard {...singlePipelineData} />
                     )
                   )
                 }
