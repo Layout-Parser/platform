@@ -1,7 +1,7 @@
 import "./styles/App.scss";
 import React from 'react';
 import { Hero, Container, Content, Heading, Columns, Block, Tag } from "react-bulma-components";
-import { Nav, NavRoute, SearchTagRowProps, SearchPanel } from './components';
+import { Nav, NavRoute, SearchTagRowProps, SearchPanel, ModelCard, ModelCardProps } from './components';
 
 const NAVROUTES: NavRoute[] = [
   {
@@ -26,7 +26,7 @@ const SearchTagGroupsData: SearchTagRowProps[] = [
   {
       title: "Document Type",
       tags: [
-          "Scientific", "Historic", "Forms" 
+          "Scientific", "Historical", "Forms" 
       ]
   },
   {
@@ -41,6 +41,43 @@ const SearchTagGroupsData: SearchTagRowProps[] = [
           "Detectron2", "Paddle", "EfficientDet"
       ]
   }
+]
+
+const ModelCardData: ModelCardProps[] = [
+  {
+    name: "PubLayNet Models",
+    author: "lp-official",
+    docType: "Scientific", 
+    updateTime: "Aug 16, 2020",
+    modelSpecs: [
+      {
+        modelConfig: "lp://PubLayNet/faster_rcnn_R_50_FPN_3x",
+        tags: [
+          "detectron2", "large"
+        ]
+      },
+      {
+        modelConfig: "lp://PubLayNet/lp://PubLayNet/mask_rcnn_R_50_FPN_3x/config",
+        tags: [
+          "detectron2", "large"
+        ]
+      }
+    ]
+  },
+  {
+    name: "HJDataset Models",
+    author: "lp-official",
+    docType: "Historical", 
+    updateTime: "Aug 17, 2020",
+    modelSpecs: [
+      {
+        modelConfig: "lp://HJDataset/mask_rcnn_R_50_FPN_3x/config",
+        tags: [
+          "detectron2", "large"
+        ]
+      }
+    ]
+  },
 ]
 
 function App() {
@@ -63,88 +100,15 @@ function App() {
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
                   Models
                 </Heading>
-                <div className="is-divider my-3"/>
-                <Content>
-                  <Block mb={2}>
-                    <Block renderAs="a" textSize={5}>
-                      PubLayNet Models
-                    </Block>
-                  </Block>
-                  <Block mb={2}>
-                    <span className="model-list-cat mr-2">
-                      Author
-                    </span>
-                    <span>
-                      Matrix
-                    </span>
-                    <span className="model-list-cat mx-3">
-                      -
-                    </span>
-                    <span className="model-list-cat mr-2">
-                      DocType
-                    </span>
-                    <span>
-                      Scientific
-                    </span>
-                    <span className="model-list-cat mx-3">
-                      -
-                    </span>
-                    <span className="model-list-cat mr-2">
-                      Last Updated
-                    </span>
-                    <span>
-                      May 29, 2021
-                    </span>
-                  </Block>
-                  <Block>
-                    <Tag.Group>
-                      <Tag className="model-config">
-                        lp://
-                      </Tag>
-                      <Tag>
-                        Detectron2
-                      </Tag>
-                      <Tag>
-                        Small
-                      </Tag>
-                    </Tag.Group>
-                  </Block>
-                </Content>
-                <div className="is-divider my-3"/>
-                <Content>
-                  <Block mb={2}>
-                    <Block renderAs="a" textSize={5}>
-                      HJDataset Models
-                    </Block>
-                  </Block>
-                  <Block >
-                    <span className="model-list-cat mr-2">
-                      Author
-                    </span>
-                    <span>
-                      Matrix
-                    </span>
-                    <span className="model-list-cat mx-3">
-                      -
-                    </span>
-                    <span className="model-list-cat mr-2">
-                      DocType
-                    </span>
-                    <span>
-                      Scientific
-                    </span>
-                    <span className="model-list-cat mx-3">
-                      -
-                    </span>
-                    <span className="model-list-cat mr-2">
-                      Last Updated
-                    </span>
-                    <span>
-                      May 29, 2021
-                    </span>
-                  </Block>
-                </Content>
-                {/* <div className="is-divider my-3"/> */}
+                
+                {
+                  ModelCardData.map(
+                    (singleModelData) => (
+                      <ModelCard {...singleModelData}/> 
+                    )
+                  )
+                }
+
 
                 <Heading subtitle size={3} mb={1} pt={6} mt={6} textTransform="uppercase">
                   Pipelines
