@@ -1,6 +1,9 @@
 import "./../styles/App.scss";
 import React from 'react';
-import { Block, Tag } from "react-bulma-components";
+import { Heading, Form, Icon, Block, Tag } from "react-bulma-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 export interface SearchTagRowProps {
     title: string;
@@ -31,8 +34,7 @@ export interface SearchTagGroupProps {
     tagRows: SearchTagRowProps[];
 };
 
-
-export const SearchTagGroup = ({tagRows}: SearchTagGroupProps) => {
+export const SearchTagGroup = ({ tagRows }: SearchTagGroupProps) => {
     const lastRowIndex = tagRows.length - 1;
     return (
         <Block>
@@ -47,3 +49,30 @@ export const SearchTagGroup = ({tagRows}: SearchTagGroupProps) => {
         </Block>
     )
 };
+
+export interface SearchPanelProps {
+    totalModelCount: Number;
+    searchTagRows: SearchTagRowProps[];
+};
+
+export const SearchPanel = ({ totalModelCount, searchTagRows }: SearchPanelProps) => {
+    return (
+        <React.Fragment>
+            <Heading subtitle italic mb={4} textColor="grey-lighter">
+                Type to search among {totalModelCount} layout models
+            </Heading>
+            <Form.Field>
+                <Form.Control>
+                    <Form.Input
+                        color="link"
+                        placeholder="PubLayNet"
+                        onChange={(e) => { }} />
+                    <Icon align="right" size="small">
+                        <FontAwesomeIcon icon={faSearch} size="lg" />
+                    </Icon>
+                </Form.Control>
+            </Form.Field>
+            <SearchTagGroup tagRows={searchTagRows} />
+        </React.Fragment>
+    )
+}

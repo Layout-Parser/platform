@@ -1,13 +1,7 @@
 import "./styles/App.scss";
 import React from 'react';
-import { Hero, Container, Content, Heading, Form, Icon, Columns, Block, Tag } from "react-bulma-components";
-import { Nav, NavRoute, SearchTagGroup, SearchTagRowProps } from './components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fas, faSearch } from '@fortawesome/free-solid-svg-icons';
-library.add(fab)
-library.add(fas)
+import { Hero, Container, Content, Heading, Columns, Block, Tag } from "react-bulma-components";
+import { Nav, NavRoute, SearchTagRowProps, SearchPanel } from './components';
 
 const NAVROUTES: NavRoute[] = [
   {
@@ -63,21 +57,7 @@ function App() {
             </Content> 
             <Columns>
               <Columns.Column size={4}>
-                <Heading subtitle italic mb={4}  textColor="grey-lighter">
-                  Type to search among 100 layout models
-                </Heading>
-                <Form.Field>
-                <Form.Control>
-                  <Form.Input
-                    color="link"
-                    placeholder="PubLayNet"
-                    onChange={(e) => {}}/>
-                  <Icon align="right" size="small">
-                    <FontAwesomeIcon icon={faSearch} size="lg"/>                
-                  </Icon>
-                </Form.Control>
-              </Form.Field>
-              <SearchTagGroup tagRows={SearchTagGroupsData}/>
+                <SearchPanel searchTagRows={SearchTagGroupsData} totalModelCount={100}/>
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
