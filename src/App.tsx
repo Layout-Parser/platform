@@ -47,34 +47,37 @@ const AllModelData: ModelCardProps[] = [
   {
     name: "PubLayNet Models",
     author: "lp-official",
-    docType: "Scientific", 
+    docType: "Scientific",
     updateTime: "Aug 16, 2020",
     modelSpecs: [
       {
         modelConfig: "lp://PubLayNet/faster_rcnn_R_50_FPN_3x",
-        tags: [
-          "detectron2", "large"
-        ]
+        tags: {
+          backend: "detectron2", 
+          size: "large",
+        }
       },
       {
         modelConfig: "lp://PubLayNet/lp://PubLayNet/mask_rcnn_R_50_FPN_3x/config",
-        tags: [
-          "detectron2", "large"
-        ]
+        tags: {
+          backend: "detectron2", 
+          size: "small",
+        }
       }
     ]
   },
   {
     name: "HJDataset Models",
     author: "lp-official",
-    docType: "Historical", 
+    docType: "Historical",
     updateTime: "Aug 17, 2020",
     modelSpecs: [
       {
         modelConfig: "lp://HJDataset/mask_rcnn_R_50_FPN_3x/config",
-        tags: [
-          "detectron2", "large"
-        ]
+        tags: {
+          backend: "detectron2", 
+          size: "large",
+        }
       }
     ]
   },

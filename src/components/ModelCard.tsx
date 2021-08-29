@@ -1,11 +1,14 @@
 import "./../styles/App.scss";
 import React from 'react';
-import { Heading, Icon, Block, Tag, Content } from "react-bulma-components";
+import { Block, Tag, Content } from "react-bulma-components";
 
 
 export interface ModelSpecProps {
     modelConfig: string;
-    tags: string[];
+    tags: {
+        backend: string;
+        size: string;
+    }
 };
 
 export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
@@ -15,7 +18,7 @@ export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
                 {modelConfig}
             </Tag>
             {
-                tags.map(
+                Object.values(tags).map(
                     (tag) => (
                         <Tag>
                             {tag}
