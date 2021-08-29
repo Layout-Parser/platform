@@ -2,7 +2,7 @@ import "./styles/App.scss";
 import React from 'react';
 import {union} from 'lodash';
 import { Hero, Container, Content, Heading, Columns } from "react-bulma-components";
-import { Nav, NavRoute, SearchTagRowProps, SearchPanel, ModelCard, ModelCardProps } from './components';
+import { Nav, NavRoute, SearchPanel, ModelCard, ModelCardProps } from './components';
 
 const NAVROUTES: NavRoute[] = [
   {
@@ -23,26 +23,26 @@ const NAVROUTES: NavRoute[] = [
   },
 ];
 
-const SearchTagGroupsData: SearchTagRowProps[] = [
-  {
-    title: "Document Type",
-    tags: [
-      "Scientific", "Historical", "Forms"
-    ]
-  },
-  {
-    title: "Model Sizes",
-    tags: [
-      "Small", "Large"
-    ]
-  },
-  {
-    title: "Architecture",
-    tags: [
-      "Detectron2", "Paddle", "EfficientDet"
-    ]
-  }
-];
+// const SearchTagGroupsData: SearchTagRowProps[] = [
+//   {
+//     title: "Document Type",
+//     tags: [
+//       "Scientific", "Historical", "Forms"
+//     ]
+//   },
+//   {
+//     title: "Model Sizes",
+//     tags: [
+//       "Small", "Large"
+//     ]
+//   },
+//   {
+//     title: "Architecture",
+//     tags: [
+//       "Detectron2", "Paddle", "EfficientDet"
+//     ]
+//   }
+// ];
 
 const AllModelData: ModelCardProps[] = [
   {
