@@ -1,15 +1,13 @@
 import "./styles/App.scss";
 import React from 'react';
-import { Nav, NavRoute } from './components';
 import { Hero, Container, Content, Heading, Form, Icon, Columns, Block, Tag } from "react-bulma-components";
+import { Nav, NavRoute, SearchTagGroup, SearchTagRowProps } from './components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas, faSearch } from '@fortawesome/free-solid-svg-icons';
-
 library.add(fab)
 library.add(fas)
-
 
 const NAVROUTES: NavRoute[] = [
   {
@@ -29,6 +27,27 @@ const NAVROUTES: NavRoute[] = [
       label: 'Discussion',
   },
 ];
+
+const SearchTagGroupsData: SearchTagRowProps[] = [
+  {
+      title: "Document Type",
+      tags: [
+          "Scientific", "Historic", "Forms" 
+      ]
+  },
+  {
+      title: "Model Sizes",
+      tags: [
+          "Small", "Large"
+      ]
+  },
+  {
+      title: "Architecture",
+      tags: [
+          "Detectron2", "Paddle", "EfficientDet"
+      ]
+  }
+]
 
 function App() {
   return (
@@ -58,51 +77,7 @@ function App() {
                   </Icon>
                 </Form.Control>
               </Form.Field>
-              <Block mb={3}>
-                <Tag.Group>
-                  <Tag color="white">
-                    <strong>Document Type</strong>
-                  </Tag>
-                  <Tag className="is-clickable">
-                  Scientific
-                  </Tag>
-                  <Tag className="is-clickable">
-                  Historic
-                  </Tag>
-                  <Tag className="is-clickable">
-                  Forms
-                  </Tag>
-                </Tag.Group>
-              </Block>
-              <Block mb={3}>
-                <Tag.Group>
-                  <Tag color="white">
-                    <strong>Model Sizes</strong>
-                  </Tag>
-                  <Tag className="is-clickable">
-                  Small
-                  </Tag>
-                  <Tag className="is-clickable">
-                  Large 
-                  </Tag>
-                </Tag.Group>
-              </Block>
-              <Block>
-                <Tag.Group>
-                  <Tag color="white">
-                    <strong>Architecture</strong>
-                  </Tag>
-                  <Tag className="is-clickable">
-                  Detectron2
-                  </Tag>
-                  <Tag className="is-clickable">
-                  Paddle
-                  </Tag>
-                  <Tag className="is-clickable">
-                  EfficientDet
-                  </Tag>
-                </Tag.Group>
-              </Block>
+              <SearchTagGroup tagRows={SearchTagGroupsData}/>
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
