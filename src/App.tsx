@@ -41,9 +41,9 @@ const SearchTagGroupsData: SearchTagRowProps[] = [
           "Detectron2", "Paddle", "EfficientDet"
       ]
   }
-]
+];
 
-const ModelCardData: ModelCardProps[] = [
+const AllModelData: ModelCardProps[] = [
   {
     name: "PubLayNet Models",
     author: "lp-official",
@@ -78,6 +78,15 @@ const ModelCardData: ModelCardProps[] = [
       }
     ]
   },
+];
+
+const AllPipelineData: ModelCardProps[] = [
+  {
+    name: "Table Detection Pipeline",
+    author: "shannons",
+    docType: "Business", 
+    updateTime: "Aug 16, 2021",
+  },
 ]
 
 function App() {
@@ -102,52 +111,24 @@ function App() {
                 </Heading>
                 
                 {
-                  ModelCardData.map(
+                  AllModelData.map(
                     (singleModelData) => (
                       <ModelCard {...singleModelData}/> 
                     )
                   )
                 }
 
-
-                <Heading subtitle size={3} mb={1} pt={6} mt={6} textTransform="uppercase">
+                <Heading subtitle size={3} mb={1} mt={5}textTransform="uppercase">
                   Pipelines
                 </Heading>
-                <div className="is-divider my-3"/>
-                <Content>
-                  <Block mb={2}>
-                    <Block renderAs="a" textSize={5}>
-                      Table Detection Pipeline 
-                    </Block>
-                  </Block>
-                  <Block >
-                    <span className="model-list-cat mr-2">
-                      Author
-                    </span>
-                    <span>
-                      Matrix
-                    </span>
-                    <span className="model-list-cat mx-3">
-                      -
-                    </span>
-                    <span className="model-list-cat mr-2">
-                      DocType
-                    </span>
-                    <span>
-                      Scientific
-                    </span>
-                    <span className="model-list-cat mx-3">
-                      -
-                    </span>
-                    <span className="model-list-cat mr-2">
-                      Last Updated
-                    </span>
-                    <span>
-                      May 29, 2021
-                    </span>
-                  </Block>
-                </Content>
-                
+
+                {
+                  AllPipelineData.map(
+                    (singlePipelineData) => (
+                      <ModelCard {...singlePipelineData}/> 
+                    )
+                  )
+                }
               </Columns.Column>
             </Columns>
           </Container>
