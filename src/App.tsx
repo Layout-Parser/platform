@@ -145,8 +145,8 @@ function App() {
 
                 {
                   AllModelData.map(
-                    (singleModelData) => (
-                      <ModelCard {...singleModelData} />
+                    (singleModelData, i) => (
+                      <ModelCard key={i} {...singleModelData} />
                     )
                   )
                 }
@@ -157,8 +157,8 @@ function App() {
 
                 {
                   AllPipelineData.map(
-                    (singlePipelineData) => (
-                      <ModelCard {...singlePipelineData} />
+                    (singlePipelineData, i) => (
+                      <ModelCard key={i} {...singlePipelineData} />
                     )
                   )
                 }

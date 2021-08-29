@@ -19,8 +19,8 @@ export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
             </Tag>
             {
                 Object.values(tags).map(
-                    (tag) => (
-                        <Tag>
+                    (tag, i) => (
+                        <Tag key={i}>
                             {tag}
                         </Tag>
                     )
@@ -84,8 +84,8 @@ export const ModelCard = ({
                     <Block>
                         {
                             modelSpecs.map(
-                                (modelSpec) => (
-                                    <ModelSpec {...modelSpec} />
+                                (modelSpec, i) => (
+                                    <ModelSpec key={i} {...modelSpec} />
                                 )
                             )
                         }

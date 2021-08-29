@@ -19,8 +19,8 @@ export const SearchTagRow = ({ title, tags }: SearchTagRowProps) => {
 
             {
                 tags.map((
-                    (tag) => (
-                        <Tag className="is-clickable">
+                    (tag, i) => (
+                        <Tag key={i} className="is-clickable">
                             {tag}
                         </Tag>
                     )
@@ -41,7 +41,7 @@ export const SearchTagGroup = ({ tagRows }: SearchTagGroupProps) => {
             {
                 tagRows.map(
                     (tagRow, i) => (
-                        <Block mb={(i === lastRowIndex ? 0 : 3)}>
+                        <Block mb={(i === lastRowIndex ? 0 : 3)} key={i}>
                             <SearchTagRow title={tagRow.title} tags={tagRow.tags} />
                         </Block>
                     ))

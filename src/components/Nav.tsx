@@ -31,8 +31,8 @@ export const Nav = ({ routes } : NavProps) => {
                         <Navbar.Menu>
                             <Navbar.Container align="right">
                                 {
-                                    routes.map((route) => (
-                                        <Navbar.Item href={route.path}>
+                                    routes.map((route, i) => (
+                                        <Navbar.Item key={i} href={route.path}>
                                             {route.label}
                                         </Navbar.Item>
                                     ))
