@@ -1,7 +1,7 @@
 name: Deploy to Github Pages
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -25,18 +25,3 @@ jobs:
     
     - name: Build project
       run: npm run build
-    
-    - run : git config user.name github-actions
-      shell: bash
-
-    - run : git config user.email github-actions@github.com
-      shell: bash
-
-    - run : git --work-tree build add --all
-      shell: bash
-    
-    - run : git commit -m $"Automatic Deploy $(git rev-parse --short HEAD)"
-      shell: bash
-
-    - run : git push origin HEAD:gh-pages --force
-      shell: bash
