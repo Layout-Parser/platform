@@ -17,16 +17,18 @@ interface NavProps {
 };
 
 export const Nav = ({ routes } : NavProps) => {
+    const [isActive, setIsActive] = React.useState(false)
+    const toggleActive = () => setIsActive((a) => !a);
     return (
         <Hero className="slogan-hero is-bold" color="danger">
             <Hero.Header>
-                <Navbar className="lp-navbar">
+                <Navbar className="lp-navbar" active={isActive}>
                     <Container>
                         <Navbar.Brand>
                             <Navbar.Item href="https://layout-parser.github.io/">
                                 <img src={logo} alt="Logo" className="lp-badge" />
                             </Navbar.Item>
-                            <Navbar.Burger />
+                            <Navbar.Burger onClick={toggleActive} />
                         </Navbar.Brand>
                         <Navbar.Menu>
                             <Navbar.Container align="right">
