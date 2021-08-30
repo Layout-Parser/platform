@@ -125,9 +125,17 @@ function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
 
 function App() {
   // init states
-  const [modelData, setModelData] = React.useState(GitHubIssues());
+  const defualtVal = [{}];
+  const [modelData, setModelData] = React.useState(defualtVal);
 
-  React.useEffect(() => {});
+  // init values of states
+  if (modelData === defualtVal) {
+    GitHubIssues().then((result) => {
+      setModelData(result);
+    });
+  }
+
+  React.useEffect(() => { console.log(modelData)});
 
   return (
     <React.Fragment>
@@ -142,7 +150,7 @@ function App() {
             </Content>
             <Columns>
               <Columns.Column size={4}>
-                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(AllModelData.concat(AllPipelineData))} totalModelCount={100} />
+                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(AllModelData.concat(AllPipelineData))} totalModelCount={modelData.length} />
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">

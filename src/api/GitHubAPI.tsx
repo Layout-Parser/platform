@@ -19,8 +19,7 @@ export async function GitHubIssues() {
     const modelData = result.data
         .filter((data: IssueData) => issueFilter(data["labels"]))
         .map((data: IssueData) => parseGithubIssue(data));
-
-    console.log(modelData)    
+   
     return modelData;
 };
 
