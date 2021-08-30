@@ -1,6 +1,6 @@
 import "./styles/App.scss";
 import React from 'react';
-import {union} from 'lodash';
+import { union } from 'lodash';
 import { Hero, Container, Content, Heading, Columns } from "react-bulma-components";
 import { Nav, NavRoute, SearchPanel, ModelCard, ModelCardProps } from './components';
 import { GitHubIssues } from './api/GitHubAPI'
@@ -55,18 +55,19 @@ const AllModelData: ModelCardProps[] = [
       {
         modelConfig: "lp://PubLayNet/faster_rcnn_R_50_FPN_3x",
         tags: {
-          backend: "detectron2", 
+          backend: "detectron2",
           size: "large",
         }
       },
       {
         modelConfig: "lp://PubLayNet/lp://PubLayNet/mask_rcnn_R_50_FPN_3x/config",
         tags: {
-          backend: "detectron2", 
+          backend: "detectron2",
           size: "small",
         }
       }
-    ]
+    ],
+    issueLink: 'https://www.google.com'
   },
   {
     name: "HJDataset Models",
@@ -77,11 +78,12 @@ const AllModelData: ModelCardProps[] = [
       {
         modelConfig: "lp://HJDataset/mask_rcnn_R_50_FPN_3x/config",
         tags: {
-          backend: "detectron2", 
+          backend: "detectron2",
           size: "large",
         }
       }
-    ]
+    ],
+    issueLink: 'https://www.baidu.com'
   },
 ];
 
@@ -91,6 +93,7 @@ const AllPipelineData: ModelCardProps[] = [
     author: "shannons",
     docType: "Business",
     updateTime: "Aug 16, 2021",
+    issueLink: 'https://www.yahoo.com'
   },
 ];
 
@@ -125,17 +128,29 @@ function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
 
 function App() {
   // init states
-  const defualtVal = [{}];
+  const defualtVal: ModelCardProps[] = [{
+    name: "",
+    author: "",
+    docType: "",
+    updateTime: "",
+    issueLink: ""
+  }];
   const [modelData, setModelData] = React.useState(defualtVal);
+  const [pipelineData, setPipelineData] = React.useState(defualtVal);
+  const [searchText, setsearchText] = React.useState("");
 
   // init values of states
   if (modelData === defualtVal) {
-    GitHubIssues().then((result) => {
-      setModelData(result);
+    GitHubIssues().then(([modelData, pipelineData]) => {
+      setModelData(modelData);
+      setPipelineData(pipelineData);
     });
   }
 
-  React.useEffect(() => { console.log(modelData)});
+  React.useEffect(() => {
+    console.log(modelData)
+    console.log(pipelineData)
+  });
 
   return (
     <React.Fragment>
@@ -150,7 +165,7 @@ function App() {
             </Content>
             <Columns>
               <Columns.Column size={4}>
-                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(AllModelData.concat(AllPipelineData))} totalModelCount={modelData.length} />
+                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(modelData.concat(pipelineData))} totalModelCount={modelData.length} />
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
@@ -158,7 +173,7 @@ function App() {
                 </Heading>
 
                 {
-                  AllModelData.map(
+                  modelData.map(
                     (singleModelData, i) => (
                       <ModelCard key={i} {...singleModelData} />
                     )
@@ -170,7 +185,7 @@ function App() {
                 </Heading>
 
                 {
-                  AllPipelineData.map(
+                  pipelineData.map(
                     (singlePipelineData, i) => (
                       <ModelCard key={i} {...singlePipelineData} />
                     )

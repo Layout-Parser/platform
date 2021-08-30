@@ -35,7 +35,8 @@ export interface ModelCardProps {
     author: string;
     docType: string;
     updateTime: string;
-    modelSpecs?: ModelSpecProps[]
+    modelSpecs?: ModelSpecProps[];
+    issueLink: string;
 };
 
 export const ModelCard = ({
@@ -44,13 +45,14 @@ export const ModelCard = ({
     docType,
     updateTime,
     modelSpecs,
+    issueLink,
 }: ModelCardProps) => {
     return (
         <React.Fragment>
             <div className="is-divider my-3" />
             <Content mb={2}>
                 <Block mb={2}>
-                    <Block renderAs="a" textSize={5}>
+                    <Block renderAs="a" textSize={5} href={issueLink}>
                         {name}
                     </Block>
                 </Block>
