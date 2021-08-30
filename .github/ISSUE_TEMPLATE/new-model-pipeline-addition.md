@@ -23,10 +23,10 @@ doclanguage: # The language of the document. Please use the language code from h
 description: # A short description of the function of the models. 
 config-names: # Here you can specify model config names and their architecture and sizes. For layout pipelines, you don't need to add this. 
 - lp-model-config: # e.g., lp://PubLayNet/model1/xxx
-   architecture: # e.g., detectron2
-   sizes: # e.g., small
+  architecture: # e.g., detectron2
+  sizes: # e.g., small
 - lp-model-name: # sometimes there will be more than one models trained on the same dataset, lp://PubLayNet/model2/xxx
-   architecture: # e.g., efficiendet
-   sizes: # e.g., large
+  architecture: # e.g., efficiendet
+  sizes: # e.g., large
 min-lp-version: # The first lp release version that includes the model in the repo
 ```
