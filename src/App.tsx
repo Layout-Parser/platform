@@ -124,6 +124,11 @@ function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
 };
 
 function App() {
+  // init states
+  const [modelData, setModelData] = React.useState(GitHubIssues());
+
+  React.useEffect(() => {});
+
   return (
     <React.Fragment>
       <Nav routes={NAVROUTES} />
