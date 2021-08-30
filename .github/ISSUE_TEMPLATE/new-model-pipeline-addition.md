@@ -16,6 +16,7 @@ assignees: lolipopshock
 
 ```yaml
 name: # The name of the model, e.g., PubLayNet Model
+type: # whether it is a layout model or pipeline 
 link: # If exists, please provide the link to the original github repo. 
 doctype: # The category of the document, e.g., scientific, business, historical
 doclanguage: # The language of the document. Please use the language code from https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes. 
