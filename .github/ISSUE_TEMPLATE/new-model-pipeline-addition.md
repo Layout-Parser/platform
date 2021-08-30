@@ -1,8 +1,8 @@
 ---
 name: New Model/Pipeline Addition   
-about: Submit a newly trained layout model into layout parser 
+about: Submit a newly trained layout model or layout pipline into the layout parser platform 
 title: ''
-labels: Model/upload
+labels: model/upload
 assignees: lolipopshock
 ---
 
