@@ -3,6 +3,7 @@ import React from 'react';
 import {union} from 'lodash';
 import { Hero, Container, Content, Heading, Columns } from "react-bulma-components";
 import { Nav, NavRoute, SearchPanel, ModelCard, ModelCardProps } from './components';
+import { GitHubIssues } from './api/GitHubAPI'
 
 const NAVROUTES: NavRoute[] = [
   {
