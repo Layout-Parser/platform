@@ -2,7 +2,7 @@ import "./styles/App.scss";
 import React from 'react';
 import { union } from 'lodash';
 import { Hero, Container, Content, Heading, Columns } from "react-bulma-components";
-import { Nav, NavRoute, SearchPanel, ModelCard, ModelCardProps } from './components';
+import { Nav, NavRoute, SearchPanel, ModelCard, ModelCardProps, SearchData } from './components';
 import { GitHubIssues } from './api/GitHubAPI'
 
 const NAVROUTES: NavRoute[] = [
@@ -128,19 +128,25 @@ function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
 
 function App() {
   // init states
-  const defualtVal: ModelCardProps[] = [{
+  const defualtModelData: ModelCardProps[] = [{
     name: "",
     author: "",
     docType: [],
     updateTime: "",
     issueLink: ""
   }];
-  const [modelData, setModelData] = React.useState(defualtVal);
-  const [pipelineData, setPipelineData] = React.useState(defualtVal);
-  const [searchText, setsearchText] = React.useState("");
+  const defualtSearchData: SearchData = {
+    text: "",
+    doctype: [],
+    backends: [],
+    sizes: []
+  };
+  const [modelData, setModelData] = React.useState(defualtModelData);
+  const [pipelineData, setPipelineData] = React.useState(defualtModelData);
+  const [searchData, setSearchData] = React.useState(defualtSearchData);
 
   // init values of states
-  if (modelData === defualtVal) {
+  if (modelData === defualtModelData) {
     GitHubIssues().then(([modelData, pipelineData]) => {
       setModelData(modelData);
       setPipelineData(pipelineData);
@@ -148,8 +154,7 @@ function App() {
   }
 
   React.useEffect(() => {
-    console.log(modelData)
-    console.log(pipelineData)
+    console.log(searchData)
   });
 
   return (
@@ -165,7 +170,12 @@ function App() {
             </Content>
             <Columns>
               <Columns.Column size={4}>
-                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(modelData.concat(pipelineData))} totalModelCount={modelData.length + pipelineData.length} />
+                <SearchPanel
+                  searchTagRows={fetchSearchTagDataFromModelData(modelData.concat(pipelineData))}
+                  totalModelCount={modelData.length + pipelineData.length}
+                  searchData={searchData}
+                  setSearchData={setSearchData}
+                />
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
