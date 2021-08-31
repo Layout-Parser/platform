@@ -1,26 +1,39 @@
 import "./styles/App.scss";
-import React from 'react';
-import { union } from 'lodash';
-import { Hero, Container, Content, Heading, Columns } from "react-bulma-components";
-import { Nav, NavRoute, SearchPanel, ModelCard, ModelCardProps, SearchData } from './components';
-import { GitHubIssues } from './api/GitHubAPI'
+import React from "react";
+import { union } from "lodash";
+import {
+  Hero,
+  Container,
+  Content,
+  Heading,
+  Columns,
+} from "react-bulma-components";
+import {
+  Nav,
+  NavRoute,
+  SearchPanel,
+  ModelCard,
+  ModelCardProps,
+  SearchData,
+} from "./components";
+import { GitHubIssues } from "./api/GitHubAPI";
 
 const NAVROUTES: NavRoute[] = [
   {
-    path: 'https://layout-parser.github.io/tutorials.html',
-    label: 'Tutorials',
+    path: "https://layout-parser.github.io/tutorials.html",
+    label: "Tutorials",
   },
   {
-    path: 'https://layout-parser.readthedocs.io/en/latest/',
-    label: 'Docs',
+    path: "https://layout-parser.readthedocs.io/en/latest/",
+    label: "Docs",
   },
   {
-    path: '/',
-    label: 'Open Platform',
+    path: "/",
+    label: "Open Platform",
   },
   {
-    path: 'https://join.slack.com/t/layout-parser/shared_invite/zt-ohjd14k1-OrJ2HltwVRGrxhLeHMfW_w',
-    label: 'Discussion',
+    path: "https://join.slack.com/t/layout-parser/shared_invite/zt-ohjd14k1-OrJ2HltwVRGrxhLeHMfW_w",
+    label: "Discussion",
   },
 ];
 
@@ -101,45 +114,46 @@ function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
   return [
     {
       title: "Document Type",
-      tags: union(...modelData.map(singleModelData => (singleModelData.docType)))
+      tags: union(
+        ...modelData.map((singleModelData) => singleModelData.docType)
+      ),
     },
     {
       title: "Backends",
       tags: union(
-        ...modelData.map(singleModelData => (
-          singleModelData.modelSpecs?.map(
-            spec => spec.tags.backend
-          )
-        ))
-      )
+        ...modelData.map((singleModelData) =>
+          singleModelData.modelSpecs?.map((spec) => spec.tags.backend)
+        )
+      ),
     },
     {
       title: "Model Sizes",
       tags: union(
-        ...modelData.map(singleModelData => (
-          singleModelData.modelSpecs?.map(
-            spec => spec.tags.size
-          )
-        ))
-      )
+        ...modelData.map((singleModelData) =>
+          singleModelData.modelSpecs?.map((spec) => spec.tags.size)
+        )
+      ),
     },
-  ]
-};
+  ];
+}
 
 function App() {
   // init states
-  const defualtModelData: ModelCardProps[] = [{
-    name: "",
-    author: "",
-    docType: [],
-    updateTime: "",
-    issueLink: ""
-  }];
+  const defualtModelData: ModelCardProps[] = [
+    {
+      name: "",
+      author: "",
+      authorLink: "",
+      docType: [],
+      updateTime: "",
+      issueLink: "",
+    },
+  ];
   const defualtSearchData: SearchData = {
     text: "",
     doctype: [],
     backends: [],
-    sizes: []
+    sizes: [],
   };
   const [modelData, setModelData] = React.useState(defualtModelData);
   const [pipelineData, setPipelineData] = React.useState(defualtModelData);
@@ -154,7 +168,7 @@ function App() {
   }
 
   React.useEffect(() => {
-    console.log(searchData)
+    console.log(searchData);
   });
 
   return (
@@ -164,14 +178,14 @@ function App() {
         <Hero.Body color="white">
           <Container>
             <Content pb={3}>
-              <Heading size={2}>
-                Layout Parser Sharing Platform
-              </Heading>
+              <Heading size={2}>Layout Parser Sharing Platform</Heading>
             </Content>
             <Columns>
               <Columns.Column size={4}>
                 <SearchPanel
-                  searchTagRows={fetchSearchTagDataFromModelData(modelData.concat(pipelineData))}
+                  searchTagRows={fetchSearchTagDataFromModelData(
+                    modelData.concat(pipelineData)
+                  )}
                   totalModelCount={modelData.length + pipelineData.length}
                   searchData={searchData}
                   setSearchData={setSearchData}
@@ -182,25 +196,23 @@ function App() {
                   Models
                 </Heading>
 
-                {
-                  modelData.map(
-                    (singleModelData, i) => (
-                      <ModelCard key={i} {...singleModelData} />
-                    )
-                  )
-                }
+                {modelData.map((singleModelData, i) => (
+                  <ModelCard key={i} {...singleModelData} />
+                ))}
 
-                <Heading subtitle size={3} mb={1} mt={5} textTransform="uppercase">
+                <Heading
+                  subtitle
+                  size={3}
+                  mb={1}
+                  mt={5}
+                  textTransform="uppercase"
+                >
                   Pipelines
                 </Heading>
 
-                {
-                  pipelineData.map(
-                    (singlePipelineData, i) => (
-                      <ModelCard key={i} {...singlePipelineData} />
-                    )
-                  )
-                }
+                {pipelineData.map((singlePipelineData, i) => (
+                  <ModelCard key={i} {...singlePipelineData} />
+                ))}
               </Columns.Column>
             </Columns>
           </Container>

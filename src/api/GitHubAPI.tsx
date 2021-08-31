@@ -37,8 +37,8 @@ interface parsedIssueData {
 }
 
 interface modelConfig {
-    'lp-model-config'?: string;
-    'lp-model-name'?: string;
+    "lp-model-config"?: string;
+    "lp-model-name"?: string;
     architecture: string;
     sizes: string;
 }
@@ -59,35 +59,49 @@ function parseGithubIssue(issue: IssueData) {
     if (issueBody) {
         const bodyPartsLis = issueBody.split(splitter);
         for (let bodyPart of bodyPartsLis) {
-
             if (bodyPart.startsWith(target)) {
                 const yamlObj = YAML.parse(bodyPart.slice(target.length, -1));
-                const dataInfo = new Date(issue.updated_at)
+                const dateInfo = new Date(issue.updated_at)
                     .toDateString()
                     .split(" ")
                     .slice(1);
-
+                console.log(issue);
                 let model: parsedIssueData = {
                     props: {
                         name: yamlObj.name,
-                        author: issue.user ? issue.user.login : "Unknown User",
-                        updateTime: `${dataInfo[0]} ${dataInfo[1]}, ${dataInfo[2]}`,
-                        docType: yamlObj.doctype.replace(/\s/g, '').toLowerCase().split(','),
+                        author: issue.user
+                            ? issue.user.login === "lolipopshock"
+                                ? "layout-parser"
+                                : issue.user.login
+                            : "Unknown User",
+                        authorLink: issue.user
+                            ? issue.user.html_url === "https://github.com/lolipopshock"
+                                ? "https://layout-parser.github.io/"
+                                : issue.user.html_url
+                            : "",
+                        updateTime: `${dateInfo[0]} ${dateInfo[1]}, ${dateInfo[2]}`,
+                        docType: yamlObj.doctype
+                            .replace(/\s/g, "")
+                            .toLowerCase()
+                            .split(","),
                         issueLink: yamlObj.link ? yamlObj.link : issue.html_url,
                     },
                     issueType: yamlObj.type.toLowerCase(),
                 };
 
-                if (yamlObj['config-names']) {
-                    model.props.modelSpecs = yamlObj['config-names'].map((config: modelConfig) => {
-                        return {
-                            modelConfig: config['lp-model-config'] || config['lp-model-name'],
-                            tags: {
-                                backend: config.architecture,
-                                size: config.sizes
-                            }
+                if (yamlObj["config-names"]) {
+                    model.props.modelSpecs = yamlObj["config-names"].map(
+                        (config: modelConfig) => {
+                            return {
+                                modelConfig:
+                                    config["lp-model-config"] || config["lp-model-name"],
+                                tags: {
+                                    backend: config.architecture,
+                                    size: config.sizes,
+                                },
+                            };
                         }
-                    });
+                    );
                 }
                 return model;
             }
