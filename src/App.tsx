@@ -1,6 +1,6 @@
 import "./styles/App.scss";
 import React from "react";
-import { intersection, lowerCase, union } from "lodash";
+import { intersection, union } from "lodash";
 import {
   Hero,
   Container,
