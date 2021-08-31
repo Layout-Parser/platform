@@ -15,7 +15,7 @@ export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
     return (
         <Tag.Group mb='0'>
             <Tag className="model-config">
-                {modelConfig}
+                <a href={modelConfig}>{modelConfig}</a>
             </Tag>
             {
                 Object.values(tags).map(
@@ -33,7 +33,7 @@ export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
 export interface ModelCardProps {
     name: string;
     author: string;
-    docType: string;
+    docType: string[];
     updateTime: string;
     modelSpecs?: ModelSpecProps[];
     issueLink: string;

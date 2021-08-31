@@ -45,63 +45,63 @@ const NAVROUTES: NavRoute[] = [
 //   }
 // ];
 
-const AllModelData: ModelCardProps[] = [
-  {
-    name: "PubLayNet Models",
-    author: "lp-official",
-    docType: "Scientific",
-    updateTime: "Aug 16, 2020",
-    modelSpecs: [
-      {
-        modelConfig: "lp://PubLayNet/faster_rcnn_R_50_FPN_3x",
-        tags: {
-          backend: "detectron2",
-          size: "large",
-        }
-      },
-      {
-        modelConfig: "lp://PubLayNet/lp://PubLayNet/mask_rcnn_R_50_FPN_3x/config",
-        tags: {
-          backend: "detectron2",
-          size: "small",
-        }
-      }
-    ],
-    issueLink: 'https://www.google.com'
-  },
-  {
-    name: "HJDataset Models",
-    author: "lp-official",
-    docType: "Historical",
-    updateTime: "Aug 17, 2020",
-    modelSpecs: [
-      {
-        modelConfig: "lp://HJDataset/mask_rcnn_R_50_FPN_3x/config",
-        tags: {
-          backend: "detectron2",
-          size: "large",
-        }
-      }
-    ],
-    issueLink: 'https://www.baidu.com'
-  },
-];
+// const AllModelData: ModelCardProps[] = [
+//   {
+//     name: "PubLayNet Models",
+//     author: "lp-official",
+//     docType: "Scientific",
+//     updateTime: "Aug 16, 2020",
+//     modelSpecs: [
+//       {
+//         modelConfig: "lp://PubLayNet/faster_rcnn_R_50_FPN_3x",
+//         tags: {
+//           backend: "detectron2",
+//           size: "large",
+//         }
+//       },
+//       {
+//         modelConfig: "lp://PubLayNet/lp://PubLayNet/mask_rcnn_R_50_FPN_3x/config",
+//         tags: {
+//           backend: "detectron2",
+//           size: "small",
+//         }
+//       }
+//     ],
+//     issueLink: 'https://www.google.com'
+//   },
+//   {
+//     name: "HJDataset Models",
+//     author: "lp-official",
+//     docType: "Historical",
+//     updateTime: "Aug 17, 2020",
+//     modelSpecs: [
+//       {
+//         modelConfig: "lp://HJDataset/mask_rcnn_R_50_FPN_3x/config",
+//         tags: {
+//           backend: "detectron2",
+//           size: "large",
+//         }
+//       }
+//     ],
+//     issueLink: 'https://www.baidu.com'
+//   },
+// ];
 
-const AllPipelineData: ModelCardProps[] = [
-  {
-    name: "Table Detection Pipeline",
-    author: "shannons",
-    docType: "Business",
-    updateTime: "Aug 16, 2021",
-    issueLink: 'https://www.yahoo.com'
-  },
-];
+// const AllPipelineData: ModelCardProps[] = [
+//   {
+//     name: "Table Detection Pipeline",
+//     author: "shannons",
+//     docType: "Business",
+//     updateTime: "Aug 16, 2021",
+//     issueLink: 'https://www.yahoo.com'
+//   },
+// ];
 
 function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
   return [
     {
       title: "Document Type",
-      tags: modelData.map(singleModelData => (singleModelData.docType))
+      tags: union(...modelData.map(singleModelData => (singleModelData.docType)))
     },
     {
       title: "Backends",
@@ -131,7 +131,7 @@ function App() {
   const defualtVal: ModelCardProps[] = [{
     name: "",
     author: "",
-    docType: "",
+    docType: [],
     updateTime: "",
     issueLink: ""
   }];
@@ -165,7 +165,7 @@ function App() {
             </Content>
             <Columns>
               <Columns.Column size={4}>
-                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(modelData.concat(pipelineData))} totalModelCount={modelData.length} />
+                <SearchPanel searchTagRows={fetchSearchTagDataFromModelData(modelData.concat(pipelineData))} totalModelCount={modelData.length + pipelineData.length} />
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
