@@ -25,7 +25,7 @@ config-names: # Here you can specify model config names and their architecture a
 - lp-model-config: # e.g., lp://PubLayNet/model1/xxx
   architecture: # e.g., detectron2
   sizes: # e.g., small
-- lp-model-name: # sometimes there will be more than one models trained on the same dataset, lp://PubLayNet/model2/xxx
+- lp-model-config: # sometimes there will be more than one models trained on the same dataset, lp://PubLayNet/model2/xxx
   architecture: # e.g., efficiendet
   sizes: # e.g., large
 min-lp-version: # The first lp release version that includes the model in the repo
