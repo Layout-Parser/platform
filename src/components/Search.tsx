@@ -140,13 +140,13 @@ export const SearchPanel = ({
     return (
         <React.Fragment>
             <Heading subtitle italic mb={4} textColor="grey-lighter">
-                Type to search among {totalModelCount} layout models
+                Search from {totalModelCount} models &amp; pipelines
       </Heading>
             <Form.Field>
                 <Form.Control>
                     <Form.Input
                         color="link"
-                        placeholder="PubLayNet"
+                        placeholder="e.g, try type 'pubLayNet'"
                         onChange={(e) => {
                             setSearchData({
                                 ...searchData,
