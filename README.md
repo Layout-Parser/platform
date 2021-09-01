@@ -1,46 +1,24 @@
-# Getting Started with Create React App
+# The Layout Parser Open Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Layout Parser Open Platform hosts a collection of layout detection models and document image analysis pipelines. We hope this platform can make it easier for practitioners to find and use the best layout detection models for their research and application. And it can provide a platform for the interchange of ideas for building complex DIA pipelines.
+ 
+We welcome contributions to the layout parser platform -- feel free to [submit](https://github.com/Layout-Parser/platform/issues/new?assignees=lolipopshock&labels=model%2Fupload&template=new-model-pipeline-addition.md&title=) your models or pipelines to the platform following the instructions below.
 
-## Available Scripts
+## Submission Instructions
+ 
+### Submitting a Layout Detection Model
+1. Train your own layout detection models
+    - Helpful resources: 
+2. [Submit a pull request](https://github.com/Layout-Parser/layout-parser/compare) in the main layout-parser repo:
+    - If your layout model is based on an existing framework like Detectron2 or PaddleDetection, you just need to provide the model weights and we’ll incorporate it in the library. 
+    - If your layout model is built on a different framework, you might also need to implement the LayoutDetector Class yourself. 
+3. [Submit the model details](https://github.com/Layout-Parser/platform/issues/new?assignees=lolipopshock&labels=model%2Fupload&template=new-model-pipeline-addition.md&title=) to the Layout Parser Open Platform. 
+    - You might need to provide `lp-model-config` in the model card data section. It will be assigned in the previous PR in the model adding request. 
 
-In the project directory, you can run:
+Please note: the models submitted to the Layout-Parser repo will be assigned with Apache 2.0 license in accordance with the layoutparser library. If you don't wish to submit your models under the license, you can also consider including the model in a DIA pipeline repo and have it submitted instead.
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Submitting a Document Image Analysis Pipeline
+1. Develop your own document image analysis pipeline in a separate Github repo. 
+    - There are not any license requirements for the pipeline repos as they are individual projects from layout-parser. 
+2. [Submit the pipline details](https://github.com/Layout-Parser/platform/issues/new?assignees=lolipopshock&labels=model%2Fupload&template=new-model-pipeline-addition.md&title=) to the Layout Parser Open Platform. 
+    - You can specify the `link` to the DIA pipeline repo in the model card data section. 
