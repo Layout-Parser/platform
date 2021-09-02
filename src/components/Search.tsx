@@ -1,6 +1,6 @@
 import "./../styles/App.scss";
 import React from "react";
-import { Heading, Form, Icon, Block, Tag } from "react-bulma-components";
+import { Heading, Form, Icon, Block, Tag, Button } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -142,11 +142,11 @@ export const SearchPanel = ({
             <Heading subtitle italic mb={4} textColor="grey-lighter">
                 Search from {totalModelCount} models &amp; pipelines
       </Heading>
-            <Form.Field>
-                <Form.Control>
+            <Form.Field className="has-addons">
+                <Form.Control className="is-expanded">
                     <Form.Input
-                        color="link"
                         placeholder="e.g, try type 'pubLayNet'"
+                        value={searchData.text}
                         onChange={(e) => {
                             setSearchData({
                                 ...searchData,
@@ -157,6 +157,16 @@ export const SearchPanel = ({
                     <Icon align="right" size="small">
                         <FontAwesomeIcon icon={faSearch} size="lg" />
                     </Icon>
+                </Form.Control>
+                <Form.Control>
+                    <Button
+                        className="clear-btn"
+                        onClick={() => {
+                            setSearchData({
+                                text: "", doctype: [], backends: [], sizes: []
+                            });
+                        }}
+                    >clear</Button>
                 </Form.Control>
             </Form.Field>
             <SearchTagGroup

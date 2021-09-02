@@ -19,6 +19,7 @@ $tabs-border-bottom-width: 0.075rem;
 
 $red: #e46767;
 $dark-red: #e43838;
+$theme-red: linear-gradient(141deg, #e8304f 0%, #e46767 71%, #ec8c79 100%);
 
 // Layout Issues
 $widescreen-enabled: true;
@@ -58,9 +59,10 @@ a.is-active {
 
 // Search
 .is-selected {
-    background-image: linear-gradient(141deg, #e8304f 0%, #e46767 71%, #ec8c79 100%) !important;
+    background-image: $theme-red !important;
     color: #f5f5f5 !important;
 }
+
 
 // Navbar
 .lp-navbar {
