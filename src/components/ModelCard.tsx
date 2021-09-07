@@ -1,6 +1,8 @@
 import "./../styles/App.scss";
 import React from "react";
 import { Block, Tag, Content } from "react-bulma-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faCopy } from "@fortawesome/free-solid-svg-icons";
 
 export interface ModelSpecProps {
     modelConfig: string;
@@ -11,10 +13,25 @@ export interface ModelSpecProps {
 }
 
 export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
+    const [isCopied, setIsCopied] = React.useState(false);
+
     return (
         <Tag.Group mb="0">
-            <Tag className="model-config">
-                <a href={modelConfig}>{modelConfig}</a>
+            <Tag
+                className="is-clickable is-link is-light has-addons"
+                onClick={() => {
+                    setIsCopied(true);
+                    navigator.clipboard.writeText(modelConfig);
+                    setTimeout(() => {
+                        setIsCopied(false);
+                    }, 3000);
+                }}
+            >
+                {modelConfig}
+                <FontAwesomeIcon
+                    className="ml-1"
+                    icon={isCopied ? faCheckCircle : faCopy}
+                />
             </Tag>
             {Object.values(tags).map((tag, i) => (
                 <Tag key={i}>{tag}</Tag>
