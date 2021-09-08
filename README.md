@@ -9,6 +9,8 @@ We welcome contributions to the layout parser platform -- feel free to [submit](
 ### Submitting a Layout Detection Model
 1. Train your own layout detection models
     - Helpful resources: 
+        - [layout-model-training](https://github.com/Layout-Parser/layout-model-training)
+        - [Automatically Parse any Document Train Detectron2 based Custom Models for Document Layout Parsing](https://towardsdatascience.com/auto-parse-and-understand-any-document-5d72e81b0be9)
 2. [Submit a pull request](https://github.com/Layout-Parser/layout-parser/compare) in the main layout-parser repo:
     - If your layout model is based on an existing framework like Detectron2 or PaddleDetection, you just need to provide the model weights and we’ll incorporate it in the library. 
     - If your layout model is built on a different framework, you might also need to implement the LayoutDetector Class yourself. 
