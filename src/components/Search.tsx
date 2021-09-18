@@ -1,6 +1,13 @@
 import "./../styles/App.scss";
 import React from "react";
-import { Heading, Form, Icon, Block, Tag, Button } from "react-bulma-components";
+import {
+    Heading,
+    Form,
+    Icon,
+    Block,
+    Tag,
+    Button,
+} from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -139,9 +146,10 @@ export const SearchPanel = ({
 }: SearchPanelProps) => {
     return (
         <React.Fragment>
+        <div className="sticky">
             <Heading subtitle italic mb={4} textColor="grey-lighter">
                 Search from {totalModelCount} models &amp; pipelines
-      </Heading>
+            </Heading>
             <Form.Field className="has-addons">
                 <Form.Control className="is-expanded">
                     <Form.Input
@@ -163,10 +171,15 @@ export const SearchPanel = ({
                         className="clear-btn"
                         onClick={() => {
                             setSearchData({
-                                text: "", doctype: [], backends: [], sizes: []
+                                text: "",
+                                doctype: [],
+                                backends: [],
+                                sizes: [],
                             });
                         }}
-                    >clear</Button>
+                    >
+                        clear
+                    </Button>
                 </Form.Control>
             </Form.Field>
             <SearchTagGroup
@@ -174,6 +187,7 @@ export const SearchPanel = ({
                 searchData={searchData}
                 setSearchData={setSearchData}
             />
+        </div>
         </React.Fragment>
     );
 };

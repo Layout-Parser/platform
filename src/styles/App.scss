@@ -38,6 +38,11 @@ a.is-active {
     background-color: $red !important;
 }
 
+div.sticky {
+    position: sticky;
+    top: 50px;
+}
+
 .theme-color {
     color: $red;
 }
