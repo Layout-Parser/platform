@@ -21,7 +21,8 @@ export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
                 className="is-clickable is-link is-light has-addons"
                 onClick={() => {
                     setIsCopied(true);
-                    navigator.clipboard.writeText(modelConfig);
+                    const [header, suffix] = modelConfig.split('//');
+                    navigator.clipboard.writeText(`lp.AutoModel("${header}//${tags.backend}/${suffix}")`);
                     setTimeout(() => {
                         setIsCopied(false);
                     }, 3000);
