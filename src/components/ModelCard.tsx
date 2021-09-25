@@ -14,6 +14,8 @@ export interface ModelSpecProps {
 
 export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
     const [isCopied, setIsCopied] = React.useState(false);
+    const [header, suffix] = modelConfig.split('//');
+    const url = `${header}//${tags.backend}/${suffix}`
 
     return (
         <Tag.Group mb="0">
@@ -21,14 +23,13 @@ export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
                 className="is-clickable is-link is-light has-addons"
                 onClick={() => {
                     setIsCopied(true);
-                    const [header, suffix] = modelConfig.split('//');
-                    navigator.clipboard.writeText(`lp.AutoModel("${header}//${tags.backend}/${suffix}")`);
+                    navigator.clipboard.writeText(`lp.AutoModel("${url}")`);
                     setTimeout(() => {
                         setIsCopied(false);
                     }, 3000);
                 }}
             >
-                {modelConfig}
+                {url}
                 <FontAwesomeIcon
                     className="ml-1"
                     icon={isCopied ? faCheckCircle : faCopy}
