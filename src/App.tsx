@@ -37,7 +37,6 @@ const NAVROUTES: NavRoute[] = [
   },
 ];
 
-
 function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
   return [
     {
@@ -65,6 +64,12 @@ function fetchSearchTagDataFromModelData(modelData: ModelCardProps[]) {
   ];
 }
 
+function countModel(modelData: ModelCardProps[]): number {
+  return modelData
+    .map((model) => (model.modelSpecs ? model.modelSpecs.length : 0))
+    .reduce((sum, current) => sum + current, 0);
+}
+
 function applySearchConditions(
   modelData: ModelCardProps[],
   searchData: SearchData
@@ -90,6 +95,16 @@ function applySearchConditions(
         searchData.backends
       ).length;
     });
+
+    targetModelData = targetModelData.map((model) => {
+      return {
+        ...model,
+        modelSpecs:
+          model.modelSpecs!.filter((modelSpec) =>
+            searchData.backends.includes(modelSpec.tags.backend)
+          ) || [],
+      };
+    });
   }
 
   if (searchData.sizes.length) {
@@ -100,6 +115,16 @@ function applySearchConditions(
           : [],
         searchData.sizes
       ).length;
+    });
+
+    targetModelData = targetModelData.map((model) => {
+      return {
+        ...model,
+        modelSpecs:
+          model.modelSpecs!.filter((modelSpec) =>
+            searchData.sizes.includes(modelSpec.tags.size)
+          ) || [],
+      };
     });
   }
 
@@ -136,7 +161,7 @@ function App() {
     });
   }
 
-  React.useEffect(() => { });
+  React.useEffect(() => {});
 
   return (
     <React.Fragment>
@@ -154,7 +179,7 @@ function App() {
                     modelData.concat(pipelineData)
                   )}
                   totalModelCount={
-                    applySearchConditions(modelData, searchData).length +
+                    countModel(applySearchConditions(modelData, searchData)) +
                     applySearchConditions(pipelineData, searchData).length
                   }
                   searchData={searchData}
