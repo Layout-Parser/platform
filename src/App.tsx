@@ -7,6 +7,7 @@ import {
   Content,
   Heading,
   Columns,
+  Button,
 } from "react-bulma-components";
 import {
   Nav,
@@ -17,6 +18,10 @@ import {
   SearchData,
 } from "./components";
 import { GitHubIssues } from "./api/GitHubAPI";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
+const CREATE_ISSUE_URL = 'https://github.com/Layout-Parser/platform/issues/new?assignees=lolipopshock&labels=model%2Fupload&template=new-model-pipeline-addition.md&title=';
 
 const NAVROUTES: NavRoute[] = [
   {
@@ -188,7 +193,12 @@ function App() {
               </Columns.Column>
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
-                  Models
+                  <span>Models</span>
+                  <Button className="is-link is-light is-rounded ml-5"
+                  onClick={() => {window.open(CREATE_ISSUE_URL)}}>
+                    <FontAwesomeIcon icon={faPlus} className='mr-2'/>
+                    {'add model'}
+                  </Button>
                 </Heading>
 
                 {applySearchConditions(modelData, searchData).map(
@@ -204,7 +214,12 @@ function App() {
                   mt={5}
                   textTransform="uppercase"
                 >
-                  Pipelines
+                  <span>Pipelines</span>
+                  <Button className="is-link is-light is-rounded ml-5"
+                  onClick={() => {window.open(CREATE_ISSUE_URL)}}>
+                  <FontAwesomeIcon icon={faPlus} className='mr-2'/>
+                    {'add pipeline'}
+                  </Button>
                 </Heading>
 
                 {applySearchConditions(pipelineData, searchData).map(
