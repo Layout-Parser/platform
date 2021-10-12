@@ -21,7 +21,8 @@ import { GitHubIssues } from "./api/GitHubAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const CREATE_ISSUE_URL = 'https://github.com/Layout-Parser/platform/issues/new?assignees=lolipopshock&labels=model%2Fupload&template=new-model-pipeline-addition.md&title=';
+const CREATE_ISSUE_URL =
+  "https://github.com/Layout-Parser/platform/issues/new?assignees=lolipopshock&labels=model%2Fupload&template=new-model-pipeline-addition.md&title=";
 
 const NAVROUTES: NavRoute[] = [
   {
@@ -166,7 +167,7 @@ function App() {
     });
   }
 
-  React.useEffect(() => {});
+  React.useEffect(() => { });
 
   return (
     <React.Fragment>
@@ -194,10 +195,14 @@ function App() {
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
                   <span>Models</span>
-                  <Button className="is-link is-light is-rounded ml-5"
-                  onClick={() => {window.open(CREATE_ISSUE_URL)}}>
-                    <FontAwesomeIcon icon={faPlus} className='mr-2'/>
-                    {'add model'}
+                  <Button
+                    className="is-link is-light is-rounded ml-5"
+                    onClick={() => {
+                      window.open(CREATE_ISSUE_URL);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                    {"add model"}
                   </Button>
                 </Heading>
 
@@ -215,10 +220,14 @@ function App() {
                   textTransform="uppercase"
                 >
                   <span>Pipelines</span>
-                  <Button className="is-link is-light is-rounded ml-5"
-                  onClick={() => {window.open(CREATE_ISSUE_URL)}}>
-                  <FontAwesomeIcon icon={faPlus} className='mr-2'/>
-                    {'add pipeline'}
+                  <Button
+                    className="is-link is-light is-rounded ml-5"
+                    onClick={() => {
+                      window.open(CREATE_ISSUE_URL);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                    {"add pipeline"}
                   </Button>
                 </Heading>
 
