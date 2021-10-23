@@ -19,7 +19,7 @@ import {
 } from "./components";
 import { GitHubIssues } from "./api/GitHubAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowAltCircleUp } from "@fortawesome/free-solid-svg-icons";
 
 const CREATE_ISSUE_URL =
   "https://github.com/Layout-Parser/platform/issues/new?assignees=lolipopshock&labels=model%2Fupload&template=new-model-pipeline-addition.md&title=";
@@ -137,6 +137,23 @@ function applySearchConditions(
   return targetModelData;
 }
 
+const AddModelButton = () => {
+  return <Button
+    className="ml-2 mt-2 px-2 py-1 has-text-grey is-italic"
+    color="dark"
+    size="small"
+    inverted={true}
+    onClick={() => {
+      window.open(CREATE_ISSUE_URL);
+    }}
+  >
+    <FontAwesomeIcon 
+      icon={faArrowAltCircleUp} 
+      className="mr-1" />
+    {"Upload Yours"}
+  </Button>
+}
+
 function App() {
   // init states
   const defualtModelData: ModelCardProps[] = [
@@ -195,15 +212,7 @@ function App() {
               <Columns.Column offset={1}>
                 <Heading subtitle size={3} mb={1} textTransform="uppercase">
                   <span>Models</span>
-                  <Button
-                    className="is-link is-light is-rounded ml-5"
-                    onClick={() => {
-                      window.open(CREATE_ISSUE_URL);
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
-                    {"add model"}
-                  </Button>
+                  <AddModelButton/>
                 </Heading>
 
                 {applySearchConditions(modelData, searchData).map(
@@ -220,15 +229,7 @@ function App() {
                   textTransform="uppercase"
                 >
                   <span>Pipelines</span>
-                  <Button
-                    className="is-link is-light is-rounded ml-5"
-                    onClick={() => {
-                      window.open(CREATE_ISSUE_URL);
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
-                    {"add pipeline"}
-                  </Button>
+                  <AddModelButton/>
                 </Heading>
 
                 {applySearchConditions(pipelineData, searchData).map(
