@@ -23,7 +23,7 @@ export const ModelSpec = ({ modelConfig, tags }: ModelSpecProps) => {
                 className="is-clickable is-link is-light has-addons"
                 onClick={() => {
                     setIsCopied(true);
-                    navigator.clipboard.writeText(`lp.AutoModel("${url}")`);
+                    navigator.clipboard.writeText(`lp.AutoLayoutModel("${url}")`);
                     setTimeout(() => {
                         setIsCopied(false);
                     }, 3000);
