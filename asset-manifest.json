@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/platform/static/css/main.1cfc0cb7.chunk.css",
+    "main.js": "/platform/static/js/main.9af6efde.chunk.js",
+    "main.js.map": "/platform/static/js/main.9af6efde.chunk.js.map",
+    "runtime-main.js": "/platform/static/js/runtime-main.8baa9c1a.js",
+    "runtime-main.js.map": "/platform/static/js/runtime-main.8baa9c1a.js.map",
+    "static/js/2.442ad990.chunk.js": "/platform/static/js/2.442ad990.chunk.js",
+    "static/js/2.442ad990.chunk.js.map": "/platform/static/js/2.442ad990.chunk.js.map",
+    "index.html": "/platform/index.html",
+    "static/css/main.1cfc0cb7.chunk.css.map": "/platform/static/css/main.1cfc0cb7.chunk.css.map",
+    "static/js/2.442ad990.chunk.js.LICENSE.txt": "/platform/static/js/2.442ad990.chunk.js.LICENSE.txt",
+    "static/media/lp-badge-white.87e3ef5c.svg": "/platform/static/media/lp-badge-white.87e3ef5c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8baa9c1a.js",
+    "static/js/2.442ad990.chunk.js",
+    "static/css/main.1cfc0cb7.chunk.css",
+    "static/js/main.9af6efde.chunk.js"
+  ]
+}
